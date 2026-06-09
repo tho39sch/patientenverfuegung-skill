@@ -1,0 +1,135 @@
+---
+date.created: {{ datum }}
+date.modified: {{ datum }}
+tags: [patientenverfuegung, vorsorge, medizinisch]
+aliases: []
+keywords: [Patientenverfuegung, Vorsorge, medizinische Entscheidungen]
+cssclasses: []
+---
+
+# Patientenverfuegung
+
+**Name, Vorname:** {{ name }}
+**Geburtsdatum:** {{ geburtsdatum }}
+**Wohnort:** {{ wohnort }}
+
+---
+
+Ich, {{ name }}, geboren am {{ geburtsdatum }}, bestimme hiermit fuer den Fall, dass ich aufgrund einer Krankheit oder eines Unfalls nicht mehr in der Lage bin, meinen Willen auszudruecken:
+
+{% if situationen.sterbeprozess %}
+## 1. Unmittelbarer Sterbeprozess
+
+Sollte sich meine aertztliche Behandlungssituation als ausweglos darstellen und mein Tod unmittelbar bevorstehen, lehne ich folgende Massnahmen zur Lebensverlaengerung ab:
+
+{% if massnahmen.reanimation_sterbeprozess == "ablehnen" %}- [x] Wiederbelebung (Reanimation)
+{% else %}- [ ] Wiederbelebung (Reanimation)
+{% endif %}
+{% if massnahmen.beatmung_sterbeprozess == "ablehnen" %}- [x] Kuenstliche Beatmung
+{% else %}- [ ] Kuenstliche Beatmung
+{% endif %}
+{% if massnahmen.ernaerung_sterbeprozess == "ablehnen" %}- [x] Kuenstliche Ernaehrung (Magentubus, PEG-Sonde)
+{% else %}- [ ] Kuenstliche Ernaehrung (Magentubus, PEG-Sonde)
+{% endif %}
+{% if massnahmen.fluessigkeit_sterbeprozess == "ablehnen" %}- [x] Kuenstliche Fluessigkeitszufuhr (Infusionen)
+{% else %}- [ ] Kuenstliche Fluessigkeitszufuhr (Infusionen)
+{% endif %}
+{% if massnahmen.dialyse_sterbeprozess == "ablehnen" %}- [x] Dialyse
+{% else %}- [ ] Dialyse
+{% endif %}
+{% if massnahmen.antibiotika_sterbeprozess == "ablehnen" %}- [x] Antibiotika
+{% else %}- [ ] Antibiotika
+{% endif %}
+
+Eine lindernde Behandlung von Schmerzen und anderen qualvollen Symptomen wuensche ich in jedem Fall, auch wenn dies zu einer Verkuerzung meines Lebens fuehren koennte.
+
+{% endif %}
+{% if situationen.wachkoma %}
+## 2. Dauerhafte Bewusstlosigkeit (Wachkoma, apallisches Syndrom)
+
+Sollte ich eine schwerste Hirnschaedigung erlitten haben und dauerhaft bewusstlos sein:
+
+{% if massnahmen.reanimation_wachkoma == "ablehnen" %}- [x] Wiederbelebung (Reanimation)
+{% else %}- [ ] Wiederbelebung (Reanimation)
+{% endif %}
+{% if massnahmen.beatmung_wachkoma == "ablehnen" %}- [x] Kuenstliche Beatmung
+{% else %}- [ ] Kuenstliche Beatmung
+{% endif %}
+{% if massnahmen.ernaerung_wachkoma == "ablehnen" %}- [x] Kuenstliche Ernaehrung (Magentubus, PEG-Sonde)
+{% else %}- [ ] Kuenstliche Ernaehrung (Magentubus, PEG-Sonde)
+{% endif %}
+{% if massnahmen.fluessigkeit_wachkoma == "ablehnen" %}- [x] Kuenstliche Fluessigkeitszufuhr (Infusionen)
+{% else %}- [ ] Kuenstliche Fluessigkeitszufuhr (Infusionen)
+{% endif %}
+{% if massnahmen.dialyse_wachkoma == "ablehnen" %}- [x] Dialyse
+{% else %}- [ ] Dialyse
+{% endif %}
+
+Ich wuensche eine fachgerechte Pflege sowie eine ausreichende Schmerz- und Symptombehandlung.
+
+{% endif %}
+{% if situationen.demenz %}
+## 3. Fortgeschrittene Demenz mit Verlust der Persoenlichkeit
+
+Sollte ich an einer fortschreitenden Demenz erkranken und meine Persoenlichkeit sowie meine Einsichts- und Entscheidungsfaehigkeit dauerhaft verloren haben:
+
+{% if massnahmen.reanimation_demenz == "ablehnen" %}- [x] Wiederbelebung (Reanimation)
+{% else %}- [ ] Wiederbelebung (Reanimation)
+{% endif %}
+{% if massnahmen.beatmung_demenz == "ablehnen" %}- [x] Kuenstliche Beatmung
+{% else %}- [ ] Kuenstliche Beatmung
+{% endif %}
+{% if massnahmen.ernaerung_demenz == "ablehnen" %}- [x] Kuenstliche Ernaehrung (Magentubus, PEG-Sonde)
+{% else %}- [ ] Kuenstliche Ernaehrung (Magentubus, PEG-Sonde)
+{% endif %}
+{% if massnahmen.fluessigkeit_demenz == "ablehnen" %}- [x] Kuenstliche Fluessigkeitszufuhr (Infusionen)
+{% else %}- [ ] Kuenstliche Fluessigkeitszufuhr (Infusionen)
+{% endif %}
+
+Eine palliativmedizinische Versorgung wuensche ich.
+
+{% endif %}
+{% if situationen.weitere %}
+## 4. Weitere Situationen
+
+{{ weitere_situationen_text }}
+
+{% endif %}
+## 5. Allgemeine Wuensche
+
+**Bevorzugter Sterbeort:** {{ sterbeort }}
+**Seelsorge / Begleitung:** {{ seelsorge }}
+**Organspende:** {{ organspende }}
+
+## 6. Persoenliche Wertvorstellungen
+
+{{ wertvorstellungen }}
+
+## 7. Verweis auf Vorsorgevollmacht
+
+Meine Vorsorgevollmacht liegt bei: {{ vorsorgevollmacht_ort }}
+Bevollmaechtigte(r): {{ bevollmaechtigte }}
+
+## 8. Entbindung von der Schweigepflicht
+
+Ich entbinde die behandelnden Aerzte und das Pflegepersonal von der Schweigepflicht gegenueber:
+{{ schweigepflicht_entbindung }}
+
+---
+
+Ich habe diese Patientenverfuegung frei und ohne Einfluss Dritter erstellt und bin mir der Tragweite bewusst. Ich kann diese Verfuegung jederzeit formlos widerrufen.
+
+**Ort, Datum:** _________________________
+**Unterschrift:** _________________________
+
+{% if zeugen %}
+## Zeugen
+
+**Zeuge 1:**
+Name: _________________________
+Unterschrift: _________________________
+
+**Zeuge 2:**
+Name: _________________________
+Unterschrift: _________________________
+{% endif %}

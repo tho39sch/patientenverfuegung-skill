@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Generierte Dokumente (persoenliche Daten)
+*.pdf
+Patientenverfuegung.md
+Vorsorgevollmacht.md
+
+# JSON-Daten (persoenliche Daten)
+*.json
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code
+.claude/

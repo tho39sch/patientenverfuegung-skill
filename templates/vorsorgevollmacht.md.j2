@@ -1,0 +1,166 @@
+---
+date.created: {{ datum }}
+date.modified: {{ datum }}
+tags: [vorsorgevollmacht, vorsorge, recht]
+aliases: []
+keywords: [Vorsorgevollmacht, Vertretung, Gesundheit, Vermoegen]
+cssclasses: []
+---
+
+# Vorsorgevollmacht
+
+**Name, Vorname des Vollmachtgebers:** {{ name }}
+**Geburtsdatum:** {{ geburtsdatum }}
+**Wohnort:** {{ wohnort }}
+
+---
+
+## 1. Allgemeine Ermaechtigung
+
+Ich, {{ name }}, geboren am {{ geburtsdatum }}, wohnhaft in {{ wohnort }}, ermaechtige hiermit:
+
+**{{ bevollmaechtigte.name }}**
+geboren am {{ bevollmaechtigte.geburtsdatum }}
+wohnhaft in {{ bevollmaechtigte.wohnort }}
+
+im Folgenden als meine Bevollmaechtigte bzw. meinen Bevollmaechtigten bezeichnet.
+
+## 2. Inkrafttreten
+
+Diese Vorsorgevollmacht tritt ein, wenn ich nicht mehr in der Lage bin, meine Angelegenheiten selbst zu besorgen (Geschaeftsunfaehigkeit oder fehlende Einsichts- und Entscheidungsfaehigkeit). Dies ist durch ein aertztliches Zeugnis nachzuweisen.
+
+{% if sofort_inkrafttreten %}
+Alternativ tritt die Vorsorgevollmacht auch sofort ein, wenn ich es ausdruecklich wuensche.
+{% endif %}
+
+## 3. Umfang der Vollmacht
+
+### 3.1 Gesundheitssorge
+
+{% if kompetenzen.gesundheit %}
+[x] Die Bevollmaechtigte / Der Bevollmaechtigte ist berechtigt:
+- Aerzte zu wechseln und Behandlungen zu vereinbaren oder abzulehnen
+- Krankenhausaustritte zu regeln
+- Rehabilitationseinrichtungen auszuwaehlen
+- Pflegeeinrichtungen auszuwaehlen und Vertraege abzuschliessen
+- Meine Patientenverfuegung durchzusetzen und Auskunft ueber meinen Gesundheitszustand zu verlangen
+- Entbindung von der Schweigepflicht zu erteilen
+{% else %}
+[ ] Gesundheitssorge ist nicht erteilt.
+{% endif %}
+
+### 3.2 Vermoegenssorge
+
+{% if kompetenzen.vermoegen %}
+[x] Die Bevollmaechtigte / Der Bevollmaechtigte ist berechtigt:
+- Bankkonten zu fuehren und Ueberweisungen zu taetigen
+- Vertraege im Rahmen der normalen Lebensfuehrung abzuschliessen und zu kuendigen
+- Miet- und Pachtverhaeltnisse zu regeln
+- Sozialleistungen zu beantragen
+- Steuererklaerungen abzugeben
+{% else %}
+[ ] Vermoegenssorge ist nicht erteilt.
+{% endif %}
+
+### 3.3 Rechtssorge
+
+{% if kompetenzen.recht %}
+[x] Die Bevollmaechtigte / Der Bevollmaechtigte ist berechtigt:
+- Prozesse zu fuehren und Vergleiche zu schliessen
+- Rechtsanwaete zu beauftragen
+- Behoeerdliche Angelegenheiten zu regeln
+{% else %}
+[ ] Rechtssorge ist nicht erteilt.
+{% endif %}
+
+### 3.4 Wohnungs- und Aufenthaltssorge
+
+{% if kompetenzen.wohnen %}
+[x] Die Bevollmaechtigte / Der Bevollmaechtigte ist berechtigt:
+- Meinen Wohnsitz zu bestimmen oder zu aendern
+- Einrichtungen (Pflegeheim, Wohngemeinschaft) auszuwaehlen
+- Umzugsangelegenheiten zu regeln
+{% else %}
+[ ] Wohnungs- und Aufenthaltssorge ist nicht erteilt.
+{% endif %}
+
+### 3.5 Persoenliche Angelegenheiten
+
+{% if kompetenzen.persoenlich %}
+[x] Die Bevollmaechtigte / Der Bevollmaechtigte ist berechtigt:
+- Besuche zu empfangen oder abzulehnen
+- Briefe und Nachrichten entgegenzunehmen
+- Persoenliche Angelegenheiten zu regeln
+{% else %}
+[ ] Persoenliche Angelegenheiten sind nicht erteilt.
+{% endif %}
+
+## 4. Besondere Anordnungen
+
+{{ besondere_anordnungen }}
+
+## 5. Verweis auf Patientenverfuegung
+
+Eine Patientenverfuegung liegt vor und befindet sich: {{ patientenverfuegung_ort }}
+
+## 6. Ersatzbevollmaechtigte
+
+{% if ersatz %}
+Sollte die / der urspruenglich Bestimmte nicht in der Lage sein, die Vollmacht auszuueben, bestimme ich als Ersatz:
+
+**{{ ersatz.name }}**
+geboren am {{ ersatz.geburtsdatum }}
+wohnhaft in {{ ersatz.wohnort }}
+{% else %}
+Es ist keine Ersatzbevollmaechtigte / kein Ersatzbevollmaechtigter bestimmt.
+{% endif %}
+
+## 7. Kontrollbefugnis
+
+{% if kontrollperson %}
+Als Kontrollperson bestimme ich: {{ kontrollperson.name }}
+
+Die Kontrollperson hat das Recht, von der Bevollmaechtigten / dem Bevollmaechtigten Auskunft ueber alle durchgefuehrten Massnahmen zu verlangen.
+{% else %}
+Es ist keine separate Kontrollperson bestimmt.
+{% endif %}
+
+## 8. Verguetung
+
+{% if verguetung %}
+Die Bevollmaechtigte / Der Bevollmaechtigte erhaelt eine angemessene Verguetung fuer ihre / seine Taetigkeit.
+{% else %}
+Es ist keine Verguetung vorgesehen.
+{% endif %}
+
+## 9. Widerruf
+
+Ich behalte mir vor, diese Vorsorgevollmacht jederzeit formlos zu widerrufen.
+
+---
+
+Ich habe diese Vorsorgevollmacht frei und ohne Zwang erstellt. Ich bin mir der Tragweite bewusst.
+
+**Ort, Datum:** _________________________
+**Unterschrift des Vollmachtgebers:** _________________________
+
+{% if notar %}
+## Notarielle Beurkundung
+
+Diese Vorsorgevollmacht wurde notariell beurkundet am {{ notar.datum }}.
+
+**Notar:** {{ notar.name }}
+**Ort:** {{ notar.ort }}
+{% endif %}
+
+{% if zeugen %}
+## Zeugen
+
+**Zeuge 1:**
+Name: _________________________
+Unterschrift: _________________________
+
+**Zeuge 2:**
+Name: _________________________
+Unterschrift: _________________________
+{% endif %}
